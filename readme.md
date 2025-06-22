@@ -4,12 +4,12 @@
 
 Официальный репозиторий сервера от YouTube канала **GTA SERVICE**. Пишем исключительно с нуля, на нашем канале.
 
-## ?? Особенности проекта
+##  Особенности проекта
 - **Модульная система**: Легко расширяемые компоненты
 - **Уникальные системы**: Эксклюзивный функционал для канала
 - **Регулярные обновления**: Следите за коммитами!
 
-## ?? Установка
+##  Установка
 1. Клонируйте репозиторий:
 ```bash
 git clone https://github.com/gtasrv/samp-server.git
@@ -17,18 +17,18 @@ git clone https://github.com/gtasrv/samp-server.git
 Компиляция с помощью Visual Studio Code, в проекте я оставил файл **tasks.json** в папке **.vscode** который отвечает за компиляцию сервера, при запуске **Задачу сборки** у нас компилируеться файл **gamemodes/bilder.pwn** не зависимо в каком вы файле находитесь. Настройки находяться в файле **tasks.json**
 
 
-## ?? Наши социальные сети
-### ?? Разработка в прямом эфире на канале YouTube
-?? [GTA SERVICE](https://youtube.com/@gtasrv)
+##  Наши социальные сети
+###  Разработка в прямом эфире на канале YouTube
+ [GTA SERVICE](https://youtube.com/@gtasrv)
 __--__ **Подпишись**
 
-?? [TELEGRAM](https://t.me/+Oz_tcMa2wLhmOTAy)
+ [TELEGRAM](https://t.me/+Oz_tcMa2wLhmOTAy)
 __--__ **тут общение на разные темы разработки**
-## ?? Скриншоты
+##  Скриншоты
 ![СКОРО](https://tankionline.com/ru/wp-content/uploads/2019/10/Halloween_soon_626_RU.jpg)
 
 Автор проекта: [**Митяй / GTASRV / GTA SERVICE**]
-## ?? Лицензия MIT (MIT)
+##  Лицензия MIT (MIT)
 
 Copyright (c) [2025] [GTA SERVICE]
 
