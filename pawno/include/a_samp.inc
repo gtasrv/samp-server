@@ -143,7 +143,7 @@ native IsPlayerAdmin(playerid);
 native Kick(playerid);
 native Ban(playerid);
 native BanEx(playerid, const reason[]);
-native SendRconCommand(command[]);
+native SendRconCommand(const command[]);
 native GetPlayerNetworkStats(playerid, retstr[], retstr_size);
 native GetNetworkStats(retstr[], retstr_size);
 native GetPlayerVersion(playerid, const version[], len); // Returns the SA-MP client revision as reported by the player

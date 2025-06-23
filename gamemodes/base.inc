@@ -1,5 +1,8 @@
 public OnGameModeInit()
 {
+	MySQL_Connecting();
+
+
 	SetGameModeText("Blank Script");
 	AddPlayerClass(0, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
 	return 1;
@@ -7,6 +10,7 @@ public OnGameModeInit()
 
 public OnGameModeExit()
 {
+	MySQL_Disconnect();
 	return 1;
 }
 
@@ -20,11 +24,15 @@ public OnPlayerRequestClass(playerid, classid)
 
 public OnPlayerConnect(playerid)
 {
+	Player_OnPlayerConnect(playerid);
+
+	Timer_PlayerSeccondTimer(playerid);
 	return 1;
 }
 
 public OnPlayerDisconnect(playerid, reason)
 {
+	Timer_DestroyPlayerSeccond(playerid);
 	return 1;
 }
 
@@ -197,3 +205,4 @@ public OnPlayerClickPlayer(playerid, clickedplayerid, source)
 {
 	return 1;
 }
+

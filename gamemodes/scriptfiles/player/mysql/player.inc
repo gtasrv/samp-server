@@ -2,7 +2,7 @@ public: OnPlayerConnectQuery(playerid) {
     new rows;
     cache_get_row_count(rows);
     if(!rows) {
-        // register player
+       Dialog_Show(playerid, Dialog:register_player);
     } else {
         cache_get_value_name_int(0, "userID", PlayerInfo[playerid][e_PlayerID]);
         cache_get_value_name(0, "user_name", PlayerInfo[playerid][e_PlayerName], MAX_PLAYER_NAME);
@@ -17,22 +17,7 @@ public: OnPlayerConnectQuery(playerid) {
             row++;
 
         }
-        Dialog_Open (
-            playerid, 
-            Dialog:auth_login,
-            DIALOG_STYLE_PASSWORD,
-            "Авторизация",
-            "Здравствуйте, дорогой друг\n\n\
-            Приветствую вас на нашем сервере!\n\
-            Ваш аккаунт уже зарегистрирован.\n\n\
-            Справка: Если вы введете ваш пароль не верно\n\
-            Более 3-х раз, то вы будете кикнуты сервером.\n\
-            Для этого соблюдайте правильность\n\
-            вводимых символов, во избжедения ошибок ввода.\n\n\
-            Пожалуйста, введите ваш пароль:",
-            "Далее",
-            "Выход"
-        );
+        Dialog_Show(playerid, Dialog:auth_login);
 
         // Update player last IP
         // static const fmt_query[] = "UPDATE users SET user_lastip = '%s' WHERE userID = %d LIMIT 1";
@@ -42,4 +27,24 @@ public: OnPlayerConnectQuery(playerid) {
         // );
     }
     return 1;
+}
+
+stock Player_MySQL_Registration(playerid, const password[]) {
+    static const fmt_str[] = "\
+    INSERT INTO users (user_name, user_password, user_regdata, user_regip, user_lastip) VALUES \
+    ('%e', '%e', '%d', '%e', '%e')";
+    new query[sizeof fmt_str + MAX_PLAYER_NAME + 30 + 11 + 16 + 16];
+    mysql_format(dbHandle, query, sizeof query, fmt_str, 
+        PlayerInfo[playerid][e_PlayerName],
+        password, 
+        gettime(), 
+        PlayerInfo[playerid][e_PlayerLastIP],
+        PlayerInfo[playerid][e_PlayerLastIP]
+    );
+    mysql_query(dbHandle, query, false);
+
+
+    PlayerStats[playerid][e_PlayerSkin] = 1;
+
+    return PlayerSpawn(playerid);
 }
