@@ -21,5 +21,8 @@ main() {}
 #include "../gamemodes/scriptfiles/player/dialogs/login.inc"
 
 
+#include "../gamemodes/scriptfiles/player/command/admin.inc"
 
 #include base.inc
+
+

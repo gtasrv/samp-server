@@ -11,10 +11,8 @@ public: OnPlayerConnectQuery(playerid) {
         cache_get_value_name(0, "user_regip", PlayerInfo[playerid][e_PlayerRegIP], 16);
         cache_get_value_name(0, "user_lastip", PlayerInfo[playerid][e_PlayerLastIP], 16);
         // 
-        new row; 
         for(new i = 1; i <= rows; i++ ) {
             cache_get_value_name_int(i-1, "stats_value", PlayerStats[playerid][i]);
-            row++;
 
         }
         Dialog_Show(playerid, Dialog:auth_login);
@@ -29,6 +27,16 @@ public: OnPlayerConnectQuery(playerid) {
     return 1;
 }
 
+public: Player_MySQL_PlayerAdd_Base(playerid) {
+    PlayerInfo[playerid][e_PlayerID] = cache_insert_id();
+
+    printf("uSERID: %d", PlayerInfo[playerid][e_PlayerID]);
+    
+    PlayerStats[playerid][e_PlayerSkin] = 1;
+    return PlayerSpawn(playerid);
+}
+
+
 stock Player_MySQL_Registration(playerid, const password[]) {
     static const fmt_str[] = "\
     INSERT INTO users (user_name, user_password, user_regdata, user_regip, user_lastip) VALUES \
@@ -41,10 +49,7 @@ stock Player_MySQL_Registration(playerid, const password[]) {
         PlayerInfo[playerid][e_PlayerLastIP],
         PlayerInfo[playerid][e_PlayerLastIP]
     );
-    mysql_query(dbHandle, query, false);
+    return mysql_tquery(dbHandle, query, "Player_MySQL_PlayerAdd_Base", "i", playerid);
 
 
-    PlayerStats[playerid][e_PlayerSkin] = 1;
-
-    return PlayerSpawn(playerid);
 }
